@@ -1,6 +1,8 @@
 # Power BI Dashboard Blueprint
 
-Connect Power BI to `data/warehouse/retail.db` after running ETL. Use `fact_sales` as the fact table and `dim_product` as the dimension table.
+This is a proposed report design, not an implemented Power BI dashboard. No `.pbix` file, screenshots, SQLite connection setup or forecast export is included.
+
+After running ETL, `data/warehouse/retail.db` contains `fact_sales` and `dim_product`. A future report should import these tables using a separately configured SQLite connection or CSV export, then relate `dim_product.product_id` (one) to `fact_sales.product_id` (many). Neither ingestion route has been verified in Power BI.
 
 ## Recommended page
 
@@ -11,3 +13,5 @@ Connect Power BI to `data/warehouse/retail.db` after running ETL. Use `fact_sale
 - Slicers: category and product name.
 
 Frame the dashboard around a clear question: **Which products need replenishment next month?**
+
+The current warehouse contains historical synthetic observations only. To implement the forecast matrix, first add an export containing product ID, target month, predicted units, stock on hand and inventory gap. Stock levels are API inputs, not warehouse data. Validate the report against SQL totals before adding genuine screenshots to the README.
